@@ -5,19 +5,23 @@ function getComputerChoice() {
     return gameOptions[Math.floor(Math.random()*gameOptions.length)];
 }
 
-let computerSelection = getComputerChoice();
-console.log(" Computer Selected move : " + computerSelection); // give more clarity to the user 
 
 function getPlayerSelection() {
     return prompt("Enter your move: rock, paper, scissors");
 }
 
-let playerSelection = getPlayerSelection();
-
-playerSelection = playerSelection.toLowerCase();
-console.log("Player selected move :" + playerSelection);
+let playerSelection;
+let computerSelection;
 
 function playRound(playerSelection, computerSelection) {
+
+    playerSelection = getPlayerSelection();
+    console.log("Player selected move :" + playerSelection);
+
+    computerSelection = getComputerChoice();
+    console.log(" Computer Selected move : " + computerSelection);
+    
+
     if (playerSelection == computerSelection) {
         return "Tie";
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
@@ -37,4 +41,20 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound(playerSelection, computerSelection));
+
+function game() {
+    for (i = 0; i < 5; i++) {
+        ans[i] = playRound(playerSelection, computerSelection);
+    }
+}
+
+let ans = new Array(5);
+
+function result() {
+    for (i = 0; i < ans.length; i++) {
+        console.log(ans[i]);
+    }
+}
+
+game();
+result();
